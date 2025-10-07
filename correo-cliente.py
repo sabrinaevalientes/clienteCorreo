@@ -1,12 +1,14 @@
 #clases a definir: usuario, mensaje, carpeta, servidorcorreo
 from typing import List, Optional
 
+#usuario.py
 class Usuario:
     def __init__(self, email: str, nombre_usuario: str):
         self._email = email
         self._nombre_usuario = nombre_usuario
         self._carpetas: List[Carpeta] = []
     
+        
     @property
     def email(self) -> str:
         return self._email
@@ -25,6 +27,7 @@ class Usuario:
     def __str__(self):
         return f"Usuario - {self._nombre_usuario}, {self._email}"
 
+#mensaje.py
 class Mensaje:
     def __init__(self, emisor: Usuario, receptor: Usuario, asunto: str, cuerpo: str):
         self._emisor = emisor 
@@ -51,6 +54,7 @@ class Mensaje:
     def __str__(self):
         return f"De: {self._emisor.email} | Para: {self._receptor.email} | Asunto: {self._asunto} | Cuerpo: {self._cuerpo}"
 
+#carpeta.py
 class Carpeta:
     def __init__(self, nombre: str):
         self._nombre = nombre 
@@ -72,6 +76,8 @@ class Carpeta:
 
     def __str__(self):
         return f"Carpeta -> {self._nombre}, {len(self._mensajes)} mensajes)"
+
+#servidor.py
 
 class ServidorCorreo: 
     def __init__(self):
@@ -98,18 +104,26 @@ class ServidorCorreo:
     def listar_usuarios(self) -> List[str]:
         return [str(u) for u in self._usuarios]
     
+#main.py
 
 # Ejemplo de uso mínimo
 if __name__ == "__main__":
-    servidor = ServidorCorreo()
+    
+#creacion de servidor y usuarios
 
+    servidor = ServidorCorreo()
     u1 = Usuario("luna@mail.com", "Luna")
     u2 = Usuario("pepito@mail.com", "Pepito")
+    
+#registrar usuarios
     servidor.agregar_usuario(u1)
     servidor.agregar_usuario(u2)
 
+#enviar mensaje
     servidor.enviar_mensaje(u1, u2, "Holii", "Buenas tardes. Como esta?")
     servidor.enviar_mensaje(u2, u1, "Re: Holaa", "Muy buenas. Todo bien. Gracias por preguntar")
+
+#mostrar resultados
 
     print("Usuarios:", servidor.listar_usuarios())
     for c in u2.carpetas:
