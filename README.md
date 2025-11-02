@@ -24,8 +24,9 @@ Material adicional: presentación o síntesis de los algoritmos utilizados.
 
 
 
-#Link al word con los contenidos actualizado (Entrega 1, 2 y 3)
+#Link al word con los contenidos actualizado (Entrega 1, 2 y 3).
 https://docs.google.com/document/d/1sxfaZCg-fswjxbPzQynzSusvDYH2TbFi74_G-lytXw4/edit?pli=1&tab=t.0
+
 
 
 
