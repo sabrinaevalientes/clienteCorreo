@@ -2,6 +2,7 @@
 from servidor import ServidorCorreo
 from usuario import Usuario
 from carpeta import Carpeta
+from mensaje import Mensaje
 
 
 # Ejemplo de uso mínimo
@@ -60,3 +61,30 @@ if __name__ == "__main__":
     resultados_remitente = carpeta_trabajo.buscar_mensajes_por_remitente("luna@mail.com")
     for r in resultados_remitente:
         print(r)
+
+
+#Ejemplos para entrega 3
+
+# Definimos filtros automáticos para Pepito
+u2.agregar_filtro("trabajo", "Trabajo")
+u2.agregar_filtro("cliente", "Clientes")
+
+# Enviamos mensajes que activan los filtros
+servidor.enviar_mensaje(u1, u2, "Reunion de trabajo", "Nos vemos a las 14.")
+servidor.enviar_mensaje(u1, u2, "Nuevo cliente confirmado", "Detalles en adjunto.")
+
+# Verificamos que se organizaron automáticamente
+print("\nMensajes en carpeta 'Trabajo':")
+for msg in next(c for c in u2.carpetas if c.nombre == "Trabajo").listar_mensajes():
+    print(msg)
+
+#--------------
+
+# Enviar un mensaje urgente
+servidor.enviar_mensaje(u1, u2, "URGENTE: Revision de contrato", "Pur favor responder hoy mismo.")
+# Lo marcamos como urgente manualmente:
+u2.recibir_mensaje(Mensaje(u1, u2, "URGENTE: Revision de contrato", "Por favor responder hoy mismo."), urgente=True)
+
+# Atender el mensaje urgente
+u2.atender_urgente()
+
