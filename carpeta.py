@@ -14,7 +14,7 @@ class Carpeta:
     @property
     def mensajes(self) -> List[Mensaje]:
         return self._mensajes
-    
+
     @property
     def subcarpetas(self) -> List['Carpeta']:
         return self._subcarpetas
@@ -34,51 +34,27 @@ class Carpeta:
             sub.listar_subcarpetas(nivel + 1)
 
     def mover_mensaje(self, asunto: str, carpeta_destino: 'Carpeta') -> bool:
-        #Mueve un mensaje con el asunto indicado a la carpeta destino.
-        #Busca de forma recursiva en todas las subcarpetas.
-        #Retorna True si se movió correctamente, False si no se encontró el mensaje.
-
-        # Buscar el mensaje en la carpeta actual
         for mensaje in self._mensajes:
             if mensaje.asunto.lower() == asunto.lower():
                 carpeta_destino.agregar_mensaje(mensaje)
                 self._mensajes.remove(mensaje)
                 return True
-
-        # Si no está en esta carpeta, buscar recursivamente en las subcarpetas
         for sub in self._subcarpetas:
             if sub.mover_mensaje(asunto, carpeta_destino):
-                return True  # Si alguna subcarpeta lo encuentra, se corta la búsqueda
-
-        # Si no se encontró en ningún nivel
+                return True
         return False
-    
+
     def buscar_mensajes_por_asunto(self, texto: str) -> List[Mensaje]:
-    
-    #Busca de manera recursiva todos los mensajes cuyo asunto contenga el texto indicado
-    #Retorna una lista con todos los mensajes encontrados en esta carpeta y subcarpetas
-        resultados: List[Mensaje] = [
-            m for m in self._mensajes 
-            if texto.lower() in m.asunto.lower()
-        ]
+        resultados: List[Mensaje] = [m for m in self._mensajes if texto.lower() in m.asunto.lower()]
         for sub in self._subcarpetas:
             resultados.extend(sub.buscar_mensajes_por_asunto(texto))
         return resultados
 
-
     def buscar_mensajes_por_remitente(self, email_remitente: str) -> List[Mensaje]:
-        #Busca de manera recursiva todos los mensajes enviados por un remitente específico.
-        #Retorna una lista con todos los mensajes encontrados en esta carpeta y subcarpetas.
-        resultados: List[Mensaje] = [
-            m for m in self._mensajes 
-            if m.emisor.email.lower() == email_remitente.lower()
-        ]
-
+        resultados: List[Mensaje] = [m for m in self._mensajes if m.emisor.email.lower() == email_remitente.lower()]
         for sub in self._subcarpetas:
             resultados.extend(sub.buscar_mensajes_por_remitente(email_remitente))
-
         return resultados
 
-
     def __str__(self):
-        return f"Carpeta -> {self._nombre}, {len(self._mensajes)} mensajes)"
+        return f"Carpeta -> {self._nombre}, {len(self._mensajes)} mensajes"
