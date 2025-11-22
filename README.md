@@ -1,4 +1,6 @@
 Cátedra: Estructuras de Datos en Python
+Grupo 2
+Integrantes: Vanesa Gutierrez
 
 Hilo Conductor: Cliente de Correo Electrónico.
 
@@ -22,10 +24,18 @@ Modelar la red de servidores de correo como un grafo (nodos: servidores, aristas
 simular el envío de mensajes entre servidores usando BFS/DFS.
 Material adicional: presentación o síntesis de los algoritmos utilizados.
 
+Entrega 4: Integración, Presentación y Defensa
+Integrar todas las funcionalidades en una interfaz de línea de comandos o simple GUI.
+Documentar el código y justificar las decisiones de diseño orientadas a objetos.
+Subir todo el proyecto y materiales al repositorio de GitHub.
+Defensa oral grupal e individual (solo en esta entrega), donde cada integrante debe explicar y
+justificar partes del código y responder preguntas técnicas.
 
 
-#Link al word con los contenidos actualizado (Entrega 1, 2 y 3).
+
+#Link al word con los contenidos actualizado (Entrega 1, 2, 3 y 4).
 https://docs.google.com/document/d/1sxfaZCg-fswjxbPzQynzSusvDYH2TbFi74_G-lytXw4/edit?pli=1&tab=t.0
+
 
 
 
